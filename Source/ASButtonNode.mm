@@ -546,6 +546,10 @@ static void ASButtonNodeResolveVerticalAlignmentForStyle(unowned ASLayoutElement
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize
 {
+#if YOGA
+  NSAssert(false, @"-[ASButtonNode layoutSpecThatFits] should not be called if Yoga enabled");
+  return nil;
+#else
     UIEdgeInsets contentEdgeInsets;
     ASButtonNodeImageAlignment imageAlignment;
     ASLayoutSpec *spec;
@@ -587,6 +591,7 @@ static void ASButtonNodeResolveVerticalAlignmentForStyle(unowned ASLayoutElement
     }
     
     return spec;
+#endif
 }
 
 - (void)updateYogaLayoutIfNeeded
