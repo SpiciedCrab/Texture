@@ -168,7 +168,7 @@ static _ASDisplayViewMethodOverrides GetASDisplayViewMethodOverrides(Class c)
   BOOL visible = (self.window != nil);
   if (!visible && node.inHierarchy && !node.shouldKeepInNode) {
       NSLog(node.description);
-//    [node __exitHierarchy];
+    [node __exitHierarchy];
   }
 }
 
