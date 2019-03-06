@@ -2383,7 +2383,7 @@ static NSString * const kReuseIdentifier = @"_ASCollectionReuseIdentifier";
   ASDisplayNode *node = self.collectionNode;
   BOOL rangeControllerNeedsUpdate = ![node supportsRangeManagedInterfaceState];;
 
-  if (!visible && node.inHierarchy) {
+  if (!visible && node.inHierarchy && !node.shouldKeepInNode) {
     if (rangeControllerNeedsUpdate) {
       rangeControllerNeedsUpdate = NO;
       // Exit CellNodes first before Collection to match UIKit behaviors (tear down bottom up).
@@ -2391,7 +2391,7 @@ static NSString * const kReuseIdentifier = @"_ASCollectionReuseIdentifier";
       // the ASRangeController will get the correct value from -interfaceStateForRangeController:.
       [_rangeController updateRanges];
     }
-    [node __exitHierarchy];
+//    [node __exitHierarchy];
   }
 
   // Updating the visible node index paths only for not range managed nodes. Range managed nodes will get their

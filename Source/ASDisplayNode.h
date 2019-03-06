@@ -421,6 +421,11 @@ AS_EXTERN NSInteger const ASDefaultDrawingPriority;
 @property BOOL displaySuspended;
 
 /**
+ * Defalut to No. The node won't be removed while didMoveToWindow is called on 
+ */
+@property BOOL shouldKeepInNode;
+
+/**
  * @abstract Whether size changes should be animated. Default to YES.
  */
 @property BOOL shouldAnimateSizeChanges;

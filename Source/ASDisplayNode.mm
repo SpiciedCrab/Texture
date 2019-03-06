@@ -130,6 +130,7 @@ static struct ASDisplayNodeFlags GetASDisplayNodeFlags(Class c, ASDisplayNode *i
   flags.isInHierarchy = NO;
   flags.displaysAsynchronously = YES;
   flags.shouldAnimateSizeChanges = YES;
+//  flags.shouldKeepInNode = NO;
   flags.implementsDrawRect = ([c respondsToSelector:@selector(drawRect:withParameters:isCancelled:isRasterizing:)] ? 1 : 0);
   flags.implementsImageDisplay = ([c respondsToSelector:@selector(displayWithParameters:isCancelled:)] ? 1 : 0);
   if (instance) {
@@ -762,6 +763,18 @@ ASSynthesizeLockingMethodsWithMutex(__instanceLock__);
   return !checkFlag(Synchronous) && !_flags.viewEverHadAGestureRecognizerAttached && _viewClass == [_ASDisplayView class] && _layerClass == [_ASDisplayLayer class];
 }
 
+- (BOOL)shouldKeepInNode
+{
+    ASDN::MutexLocker l(__instanceLock__);
+    return _flags.shouldKeepInNode;
+}
+    
+- (void)setShouldKeepInNode:(BOOL)shouldKeepInNode
+{
+    ASDN::MutexLocker l(__instanceLock__);
+    _flags.shouldKeepInNode = shouldKeepInNode;
+}
+    
 - (BOOL)shouldAnimateSizeChanges
 {
   ASDN::MutexLocker l(__instanceLock__);

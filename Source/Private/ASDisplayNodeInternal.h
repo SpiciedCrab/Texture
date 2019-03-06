@@ -99,7 +99,8 @@ AS_EXTERN NSString * const ASRenderingEngineDidDisplayNodesScheduledBeforeTimest
     unsigned shouldBypassEnsureDisplay:1;
     unsigned displaySuspended:1;
     unsigned shouldAnimateSizeChanges:1;
-    
+    unsigned shouldKeepInNode:1;
+      
     // Wrapped view handling
     
     // The layer contents should not be cleared in case the node is wrapping a UIImageView.UIImageView is specifically

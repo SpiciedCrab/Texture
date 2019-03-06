@@ -166,8 +166,9 @@ static _ASDisplayViewMethodOverrides GetASDisplayViewMethodOverrides(Class c)
 {
   ASDisplayNode *node = _asyncdisplaykit_node; // Create strong reference to weak ivar.
   BOOL visible = (self.window != nil);
-  if (!visible && node.inHierarchy) {
-    [node __exitHierarchy];
+  if (!visible && node.inHierarchy && !node.shouldKeepInNode) {
+      NSLog(node.description);
+//    [node __exitHierarchy];
   }
 }
 
